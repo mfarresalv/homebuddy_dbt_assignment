@@ -1,0 +1,30 @@
+[0m17:11:22.166790 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f498e10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f492c10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f4ab850>]}
+
+
+============================== 17:11:22.170049 | 5721871d-166b-431c-ad58-c65d558da15e ==============================
+[0m17:11:22.170049 [info ] [MainThread]: Running with dbt=1.6.2
+[0m17:11:22.170530 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/miquelfarre/.dbt', 'fail_fast': 'False', 'version_check': 'True', 'log_path': 'logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'log_format': 'default', 'target_path': 'None', 'invocation_command': 'dbt init', 'send_anonymous_usage_stats': 'True'}
+[0m17:11:22.171033 [warn ] [MainThread]: [ConfigFolderDirectory]: Unable to parse dict {'dir': PosixPath('/Users/miquelfarre/.dbt')}
+[0m17:11:22.171396 [info ] [MainThread]: Creating dbt configuration folder at 
+[0m17:11:37.487343 [debug] [MainThread]: Starter project path: /Users/miquelfarre/opt/anaconda3/envs/home_buddy/lib/python3.11/site-packages/dbt/include/starter_project
+[0m17:11:37.498708 [info ] [MainThread]: 
+Your new dbt project "homebuddy" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m17:11:37.499746 [info ] [MainThread]: Setting up your profile.
+[0m17:14:24.491514 [info ] [MainThread]: Profile homebuddy written to /Users/miquelfarre/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m17:14:24.494201 [debug] [MainThread]: Command `dbt init` succeeded at 17:14:24.493398 after 182.41 seconds
+[0m17:14:24.495163 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f498a10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f4aa3d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a0bdd10>]}
+[0m17:14:24.496097 [debug] [MainThread]: Flushing usage events
