@@ -99,12 +99,3 @@ LEFT JOIN
   why_interested_final
 USING
   (lead_id)
-
-
-
-
-
-
-
-
-

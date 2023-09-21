@@ -1,0 +1,20 @@
+
+version: 2
+
+models:
+  - name: unique_leads
+    description: "leads table removing duplicates, since there were some rows that were giving the same data"
+  - name: exploded_demo_data
+    description: "demographic table exploted with main metrics as columns"
+  - name: lead_from_answers_parsed
+    description: "Table on lead granurality, each column is one question on the form and it contains the answer the lead has given, for multiple answers questions there is one boolean column for each possible response"
+  - name: all_metrics
+    description: "table with all available metrics, from lead, form submission and demographics"
+sources:
+  - name: homeBuddy
+    database: personal-use-376010  
+    schema: HomeBuddy  
+    tables:
+      - name: demographics
+      - name: form_answers
+      - name: leads

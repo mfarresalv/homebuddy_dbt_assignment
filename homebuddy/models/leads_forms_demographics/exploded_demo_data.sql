@@ -1,6 +1,7 @@
 {{ config(materialized='table') }}
 
 
+
 WITH exploded_json as (SELECT 
 lead_id,
 JSON_EXTRACT_SCALAR(demographics_data, "$.AGE") as age,
@@ -18,17 +19,16 @@ JSON_EXTRACT_SCALAR(demographics_data, "$.HOMEOWNERCD") as homeownercd,
 JSON_EXTRACT_SCALAR(demographics_data, "$.LANGUAGECD") as languagecd,
 JSON_EXTRACT_SCALAR(demographics_data, "$.MARRIEDCD") as marriedcd,
 JSON_EXTRACT_SCALAR(demographics_data, "$.WEALTHSCR") as wealthscr
-
  FROM {{source('homeBuddy','demographics')}})
 
 SELECT 
         LEAD_ID,
-        IF(age="null",NULL,regexp_replace(age,'\"',"")) as age,
-        IF(child="null",NULL,regexp_replace(child,'\"',"")) as child,
-        IF(childagecd_11_15="null",NULL,regexp_replace(childagecd_11_15,'\"',"")) as childagecd_11_15,
-        IF(childagecd_16_17="null",NULL,regexp_replace(childagecd_16_17,'\"',"")) as childagecd_16_17,
-        IF(CHILDAGECD_6="null",NULL,regexp_replace(CHILDAGECD_6,'\"',"")) as CHILDAGECD_6,
-        IF(CHILDAGECD_6_10="null",NULL,regexp_replace(CHILDAGECD_6_10,'\"',"")) as CHILDAGECD_6_10,
+        CAST(IF(age="null",NULL,regexp_replace(age,'\"',"")) AS INT64) as age,
+        IF(IF(child="null",NULL,regexp_replace(child,'\"',""))='Y',TRUE,FALSE) as child,
+        IF(IF(childagecd_11_15="null",NULL,regexp_replace(childagecd_11_15,'\"',""))='Y',TRUE,FALSE) as childagecd_11_15,
+        IF(IF(childagecd_16_17="null",NULL,regexp_replace(childagecd_16_17,'\"',""))='Y',TRUE,FALSE) as childagecd_16_17,
+        IF(IF(CHILDAGECD_6="null",NULL,regexp_replace(CHILDAGECD_6,'\"',""))='Y',TRUE,FALSE) as CHILDAGECD_6,
+        IF(IF(CHILDAGECD_6_10="null",NULL,regexp_replace(CHILDAGECD_6_10,'\"',""))='Y',TRUE,FALSE) as CHILDAGECD_6_10,
         IF(childnbrcd="null",NULL,regexp_replace(childnbrcd,'\"',"")) as childnbrcd,
         IF(dob="null",NULL,regexp_replace(dob,'\"',"")) as dob,
         IF(ehi="null",NULL,regexp_replace(ehi,'\"',"")) as ehi,
