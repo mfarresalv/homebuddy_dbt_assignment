@@ -10,6 +10,7 @@ In order to do this I have uploaded the 3 tables to google bigquery and worked o
 In order of being able to work on data there is the need setting the same granularity for all tables. This code transforms demographics table to explode json columns and changes the granularity of forms_answers into lead.
 
 In order to do that 2 extra tables are created:
+- unique_leads: this table was created since the table leads had a lot of duplicated rows, so this table is the same as leads but only unique values
 - exploded_demo_data: this table gets some fields on the demographics, and tranform each value into a column
 - lead_form_answers_parsed: this table transforms the table form_answers into a lead granularity. givin one column for each existing question. There are 2 questions that accept multiple answers (they have several response per deal) on that case this table also create one field for each option available to answer.
 
