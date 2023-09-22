@@ -1,0 +1,46 @@
+/*
+These are some queries that helped me understand better the dataset (Exploration).
+For data cleaning, please have a look into dbt project (read readme on that project)
+
+*/
+
+-- With this query I realized that we had multiple values repeated on leads_table:
+
+select count(lead_id), count(distinct lead_id) from `personal-use-376010.HomeBuddy.leads`
+;
+-- So I need to check wheather a lead can be repeated multiple times or if the row itself its repeated:
+WITH query as (SELECT distinct 
+LEAD_ID,      
+CONTRACTOR_ID,    
+LEAD_CREATED_AT,    
+LEAD_STATUS,        
+SERVICE_ALIAS,        
+IS_APPOINTMENT_SET FROM `personal-use-376010.HomeBuddy.leads`)
+select count(lead_id), count(distinct lead_id) from query
+
+/* 
+This last query was giving me the same results, meaning that there where full rows repeated.
+However, since the data per lead was the same on each row, there was no need on creating any attribution model for the leads. 
+I used this query on dbt to build a new table (see explanations on dbt readme)
+
+*/
+;
+-- this is how I realized the form_answers table granularity was lead, question key answer_code (following queries are given the same result)
+with unique_answers as (select distinct * from `personal-use-376010.HomeBuddy.form_answers`) select count(*) from unique_answers;
+select count(*) from `personal-use-376010.HomeBuddy.form_answers`;
+
+-- to check what questions had more than one answer I executed the following query
+WITH multiple_answer_responses as (
+select
+lead_id,
+QUESTION_KEY,
+count(distinct ANSWER_CODE) num_answers
+from `personal-use-376010.HomeBuddy.form_answers`
+group by lead_id,
+QUESTION_KEY
+having num_answers>1)
+select distinct QUESTION_KEY from multiple_answer_responses
+;
+-- on this query I make sure that we dont have repeated rows in demographics table
+
+select count(lead_id), count(distinct lead_id) from `personal-use-376010.HomeBuddy.demographics` 
